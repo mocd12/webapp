@@ -68,12 +68,12 @@ header{
     width: 100%;
 }
 
-.menu-caption > p{
+.menu-caption > p ,.dynamic-drop-down>ul{
     padding-left: 1em;
     float: left;
 }
 
-.menu-caption:after {
+.menu-caption:after{
     content: "";
     width: 0px;
     height: 0px;
@@ -121,7 +121,7 @@ header{
     text-align: left;
     position: absolute;
     top: 160px;
-
+    z-index: 1;
 }
 
 .action-list >li{
@@ -211,7 +211,7 @@ header{
 .expand-icon ,.settings-icon{
     float: right;
     text-align: center;
-    margin: 2em 1em 0 1em;
+    margin: 1em 1em 0 1em;
     display: block;
     width: 20px;
     height: 20px;
@@ -224,5 +224,102 @@ header{
     position: relative;
     margin-right: auto;
     margin-left: auto;
+}
+
+.icons-bar{
+    width: 100%;
+    height: auto;
+    display: inline-block;
+    z-index: 1;
+    position: relative;
+    top: 4px;
+}
+
+.settings{
+    background: white;
+    padding: 1em;
+    box-shadow: 1px 1px 6px 2px gray;
+    height: 36%;
+}
+
+.settings >ul{
+    padding-left: 0;
+}
+
+.settings>ul>li{
+    display: inline-block;
+    width: 100%;
+    list-style-type: none;
+    background: rgb(235, 235, 235);
+    padding: 10px 0 10px 0px;
+    margin: 2px 0px 7px 0px;
+    font-size: 12px;
+}
+
+.settings > ul > li > label{
+    box-sizing: border-box;
+    width: 20%;
+    margin: 0 7% 0 2%;
+}
+
+.settings div{
+    box-sizing: border-box;
+    width: 40%;
+    display: inline-block;
+}
+
+.settings > ul input {
+    border: none;
+    width: 80%;
+    height: 1.5em;
+    vertical-align: middle;
+}
+
+.save, .cancel{
+    position: relative;
+    float: right;
+    border: none;
+    padding: 5px;
+    font-size: 12px;
+    width: 6em;
+    margin-left: 1em;
+    cursor: pointer;
+    outline: none;
+}
+
+.save{
+    color: white;
+    background: black;
+}
+
+.cancel{
+    color: black;
+    background: white;
+    text-decoration: underline;
+}
+
+.quick-reports{
+    padding: 1em;
+    box-sizing: border-box;
+}
+
+.settings-icon-wrapper{
+    background: white;
+    height: 3em;
+    width: 3em;
+    float: right;
+}
+
+.dynamic-drop-down{
+    width: 300px;
+    background: white;
+    height: 3em;
+    float: left;
+    font-size: 12px;
+    color: black;
+    text-align: left;
+    position: absolute;
+    border: none;
+    outline: none;
 }
 

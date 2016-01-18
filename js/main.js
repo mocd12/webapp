@@ -10,6 +10,16 @@ var updatePage= function (data) {
 	updateNotification(data.notification);
 	updateQuickActions(data.quickActions);
 
+
+	if (localStorage.pageData) {
+		updateFolders();
+	} 
+
+
+}
+
+var  updateFolders= function (data) {
+	
 }
 
 var updateNotification= function (data) {
@@ -17,6 +27,9 @@ var updateNotification= function (data) {
 		$(".notifications").innerHTML ="<p>"+ data +"</p>";
 	}
 }
+
+
+
 
 var updateQuickActions= function (quickActions) {
 	var navSections = all(".nav-section");
@@ -62,9 +75,16 @@ var updateTabs = function(iconList){
 	for (var i = 0; i <tabs.length; i++) {
 		tabs[i].innerHTML="<i class=\""+cls+iconList.icons[i].icon.tags[0]+"\"></i>" + tabs[i].innerHTML;
 	}
-	$(".tabs>ul>li").className+="active-tab";
-	$(".tabs>div").style.display="block";
+	if (window.location.href.indexOf("#") == -1 ) {
+		$(".tabs>ul>li").className+="active-tab";
+		$(".tabs>div").style.display="block";
+	} else {
+		var newHash = window.location.href.substring(window.location.href.indexOf("#"));
+		$("a[href=\"" + newHash +"\"]").parentNode.className="active-tab";
+		$(newHash).style.display ="block";
+	}
 	window.addEventListener("hashchange",changeActiveTab,false);
+
 }
 
 var changeFocus = function(e){
@@ -76,20 +96,78 @@ var changeFocusNav = function(e){
 }
 
 var changeActiveTab = function(e){
-	var oldHash = e.oldURL.substring(e.oldURL.indexOf("#"));
 	var newHash = e.newURL.substring(e.newURL.indexOf("#"));
 	var tabDivs=all(".tabs > div");
 	for (var i = 0; i <tabDivs.length; i++) {
-        tabDivs[i].style.display ="none";  //done in case of reload when you cannot tell which was the last active tab
-    }
-    $(newHash).style.display ="block";
-    $(".active-tab").className="";
-    $("a[href=\"" + newHash +"\"]").parentNode.className="active-tab";
+		tabDivs[i].style.display ="none"; 
+	}
+	$(newHash).style.display ="block";
+	$(".active-tab").className="";
+	$("a[href=\"" + newHash +"\"]").parentNode.className="active-tab";
 }
+
+
+var validateUrl = function (urlToValidate) {
+
+	var myRegExp =/^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!10(?:\.\d{1,3}){3})(?!127(?:\.\d{1,3}){3})(?!169\.254(?:\.\d{1,3}){2})(?!192\.168(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/[^\s]*)?$/i;
+
+	if (!myRegExp.test(urlToValidate)){
+		return false;
+	}else{
+		return true;
+	}
+
+}
+
+var toggleSettingsDiv = function (){
+	var parentClass= this.parentNode.parentNode.parentNode.className;
+	var settingsDiv= $("."+parentClass + "> .settings");
+    if (settingsDiv.style.display=="none"){
+        settingsDiv.style.display="block";
+        settingsDiv.style.height="36%";
+        this.parentNode.style.backgroundColor="white";
+    }
+    else{
+        settingsDiv.style.display="none";
+        settingsDiv.style.height="0";
+        this.parentNode.style.backgroundColor="transparent";
+    }
+}
+
+var validateForm =function (formId) {
+	var inputs=all("form[name=\"" +formId +"\"] input");
+
+	for (var i = 0; i <inputs.length -1; i++) {
+		if (inputs[i].name == "name") {
+
+
+			if (( inputs[i+1].value != null  && inputs[i+1].value !=""  ) 
+				&& (inputs[i].value == null || inputs[i].value =="" ) )  {
+				alert("please fill out this field. 1");
+			}
+		} else if (inputs[i].name == "url") {
+			
+			if (( inputs[i-1].value != null  && inputs[i-1].value !=""  ) 
+				&& (inputs[i].value == null ||inputs[i].value =="" ) )  {
+				alert("please fill out this field. 2");
+			} else if (( inputs[i-1].value != null  && inputs[i-1].value !=""  )
+			 && ( !validateUrl(inputs[i].value) ) ) {
+				alert("please enter a URL.");
+			}
+		}
+	}
+}
+
+
 
 function initialize () {	
 	UTILS.ajax("data/config.json",{done:updatePage});
 	UTILS.ajax("fonts/selection.json",{done:updateTabs});
+	var sButtons = all(".settings-icon");
+	for (var i=0; i<sButtons.length; ++i)
+	{
+		sButtons[i].addEventListener("click",toggleSettingsDiv);
+	}
 }
 
 window.onLoad = initialize();

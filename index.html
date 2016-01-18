@@ -66,18 +66,60 @@
         </ul>
 
 
-        <div id="quick-reports">
-            <div>
+        <div id="quick-reports" class="quick-reports">
+            <div class="icons-bar">
+                <select class="dynamic-drop-down">
+                    <option value="">Blah</option>
+                    <option value="">Glah</option>
+                </select>
+                <div class="settings-icon-wrapper">
+                    <div class="settings-icon">
+                        <img src="img/icons/settings.png" alt="open in new window">
+                    </div>
+                </div>
                 <a href="http://www.paulirish.com/" class="expand-icon" target="_blank">
                     <img src="img/icons/expand.png" alt="open in new window">
                 </a>
-                <a href="" class="settings-icon" target="_blank">
-                    <img src="img/icons/settings.png" alt="open in new window">
-                </a>
             </div>
 
-            <div class="">
-
+            <div class="settings">
+                <ul>
+                    <li>
+                        <label for="">Report 01</label>
+                        <div>
+                            <label for="name1">Name</label>
+                            <input type="text"  id="name1">
+                        </div>
+                        <div>
+                            <label for="url1">URL</label>
+                            <input type="text"  id="url1">
+                        </div>
+                    </li>
+                    <li>
+                        <label for="">Report 02</label>
+                        <div>
+                            <label for="name2">Name</label>
+                            <input type="text"  id="name2">
+                        </div>
+                        <div>
+                            <label for="url2">URL</label>
+                            <input type="text"  id="url2">
+                        </div>
+                    </li>
+                    <li>
+                        <label for="">Report 03</label>
+                        <div>
+                            <label for="name3">Name</label>
+                            <input type="text" id="name3">
+                        </div>
+                        <div>
+                            <label for="url3">URL</label>
+                            <input type="text" id="url3">
+                        </div>
+                    </li>
+                </ul>
+                <input type="button" class="save" value="Save">
+                <input type="button" class="cancel" value="Cancel">
             </div>
         </div>
 
