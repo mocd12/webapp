@@ -1,5 +1,5 @@
 body{
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     background: url(../img/body-background.jpg) 100% fixed;
     background-size: cover;
     margin: 0;
@@ -11,6 +11,10 @@ header{
     height: 72px;
     width: 100%;
     background-color: black;
+}
+
+input:invalid {
+    border: 1px solid red !important;
 }
 
 .layout-wrap{
@@ -75,8 +79,8 @@ header{
 
 .menu-caption:after{
     content: "";
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-top: 10px solid black;
@@ -240,23 +244,25 @@ header{
     padding: 1em;
     box-shadow: 1px 1px 6px 2px gray;
     height: 36%;
+    position: absolute;
+    margin-right: 1em;
 }
 
-.settings >ul{
+.settings  > form > ul{
     padding-left: 0;
 }
 
-.settings>ul>li{
+.settings  > form > ul > li{
     display: inline-block;
     width: 100%;
     list-style-type: none;
     background: rgb(235, 235, 235);
-    padding: 10px 0 10px 0px;
-    margin: 2px 0px 7px 0px;
+    padding: 10px 0 10px 0;
+    margin: 2px 0 7px 0;
     font-size: 12px;
 }
 
-.settings > ul > li > label{
+.settings  > form > ul > li > label{
     box-sizing: border-box;
     width: 20%;
     margin: 0 7% 0 2%;
@@ -268,11 +274,12 @@ header{
     display: inline-block;
 }
 
-.settings > ul input {
+.settings  > form > ul input {
     border: none;
     width: 80%;
     height: 1.5em;
     vertical-align: middle;
+    font-size: 12px;
 }
 
 .save, .cancel{
@@ -310,16 +317,44 @@ header{
     float: right;
 }
 
-.dynamic-drop-down{
-    width: 300px;
-    background: white;
-    height: 3em;
-    float: left;
-    font-size: 12px;
-    color: black;
-    text-align: left;
-    position: absolute;
-    border: none;
-    outline: none;
+.styled-select-list li a:link ,.styled-select-list li a:visited {
+    text-decoration: none;
+    color: #6E6E6E;
 }
 
+.styled-select-list {
+    margin-left: 0;
+    margin-top: 0;
+    padding: 5px 0 5px 9px;
+    list-style-type: none;
+    text-align: left;
+    position: absolute;
+    width: 300px;
+    background: white none repeat scroll 0 0;
+    display: block;
+}
+
+.styled-select-list li:first-child {
+ display: block;   
+}
+
+.styled-select-list li {
+ display: none;   
+}
+
+.styled-select-list li:first-child:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid black;
+    float: right;
+    margin-top: 5px;
+    margin-right: 10px;
+
+}
+
+.styled-select-list:hover  li{
+    display: block;
+}
