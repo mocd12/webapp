@@ -244,17 +244,18 @@ var cancelPress = function () {
 
 
 var searchEnter = function (e) {
-    var keynum = e.which;
-    if (keynum == 13) {
-        var dropDownList = all(".styled-select-list li");
-        for (var i = 0; i < dropDownList.length; i++) {
+    var enteredKey = e.which;
+    if (enteredKey == 13) {
+        var dropDownList=all(".styled-select-list li");
+        for (var i=0; i<dropDownList.length; i++) {
             if (dropDownList[i].innerHTML == this.value) {
+                $(".tabs ul li a[href=\"#" +dropDownList[i].parentNode.parentNode.parentNode.className +"\"]" ).click();
                 dropDownList[i].click();
-                i = dropDownList.length + 1;
+                i=dropDownList.length +1;
             }
         }
-        if (i == dropDownList.length) {
-            $(".notifications").innerHTML = "<p>" + "The searched report " + this.value + " was not found" + "</p>";
+        if (i ==dropDownList.length) {
+            $(".notifications").innerHTML = "<p>" + "The searched report " + this.value +" was not found"+ "</p>";
         }
     }
 };
