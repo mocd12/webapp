@@ -206,10 +206,16 @@ input:invalid {
 }
 
 .frame-window {
-    width:100%;
-    height:89%;
-    margin-top:1em;
+    width: 100%;
+    height: 84%;
     border: medium none;
+    position: absolute;
+    margin: 0em;
+    box-sizing: border-box;
+    display: block;
+    padding-right: 2em;
+    top: 68px;
+    z-index: 0;
 }
 
 .expand-icon ,.settings-icon{
@@ -244,8 +250,8 @@ input:invalid {
     padding: 1em;
     box-shadow: 1px 1px 6px 2px gray;
     height: 36%;
-    position: absolute;
-    margin-right: 1em;
+    position: relative;
+    z-index: 2;
 }
 
 .settings  > form > ul{
@@ -268,7 +274,7 @@ input:invalid {
     margin: 0 7% 0 2%;
 }
 
-.settings div{
+.settings  form ul div{
     box-sizing: border-box;
     width: 40%;
     display: inline-block;
@@ -284,7 +290,7 @@ input:invalid {
 
 .save, .cancel{
     position: relative;
-    float: right;
+    float: left;
     border: none;
     padding: 5px;
     font-size: 12px;
@@ -298,6 +304,9 @@ input:invalid {
     color: white;
     background: black;
 }
+.form-buttons {
+    float: right;
+}
 
 .cancel{
     color: black;
@@ -305,7 +314,7 @@ input:invalid {
     text-decoration: underline;
 }
 
-.quick-reports{
+.quick-reports ,.my-team-folders{
     padding: 1em;
     box-sizing: border-box;
 }
@@ -331,7 +340,8 @@ input:invalid {
     position: absolute;
     width: 300px;
     background: white none repeat scroll 0 0;
-    display: block;
+    display: none;
+    cursor: default;
 }
 
 .styled-select-list li:first-child {
@@ -357,4 +367,8 @@ input:invalid {
 
 .styled-select-list:hover  li{
     display: block;
+}
+
+#my-folders .frame-window, #public-folders .frame-window{
+    margin: 1em;
 }
