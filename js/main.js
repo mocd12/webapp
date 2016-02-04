@@ -255,7 +255,7 @@ var searchEnter = function (e) {
             }
         }
         if (i ==dropDownList.length) {
-            $(".notifications").innerHTML = "<p>" + "The searched report " + this.value +" was not found"+ "</p>";
+            $(".notifications").innerHTML = "<p>" + "The searched report " + this.value +"was not found"+ "</p>";
         }
     }
 };
